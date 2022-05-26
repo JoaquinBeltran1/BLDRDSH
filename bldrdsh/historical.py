@@ -26,6 +26,8 @@ def generate_metadata_file(params):
 def generate_table():
     """
     Base thing table type, all tables share same "schema".
-    Create CSV for now for all tables in sales
+    Create CSV for now for all tables in sales.
+    Then sqlite3
+    Then postgresql
     """
     pass
