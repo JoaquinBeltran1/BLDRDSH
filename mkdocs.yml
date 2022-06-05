@@ -1,1 +1,19 @@
 site_name: My Docs
+theme:
+  name: material
+  palette: 
+    - scheme: default
+      primary: indigo
+      accent: deep orange
+      toggle:
+        icon: material/toggle-switch 
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: deep orange
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+extra:
+  version:
+    provider: mike
