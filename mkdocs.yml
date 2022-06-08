@@ -1,19 +1,67 @@
-site_name: My Docs
+site_name: BLDRDSH
+repo_url: https://github.com/JoaquinBeltran1/BLDRDSH
+site_description: A package that...
+site_author: Joaquin Beltran
 theme:
   name: material
   palette: 
     - scheme: default
       primary: indigo
-      accent: deep orange
       toggle:
         icon: material/toggle-switch 
         name: Switch to dark mode
     - scheme: slate
       primary: indigo
-      accent: deep orange
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to light mode
+  font:
+    text: Rubik
+    code: Courier Prime
+  features:
+    - header.autohide
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+
+plugins:
+  - mkdocstrings
+  
+watch:
+- bldrdsh
 extra:
   version:
-    provider: mike
+    method: mike 
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/JoaquinBeltran1
+      name: My Github profile
+extra_css:
+  - stylesheets/extra.css
+  
+extra_javascript:
+  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - footnotes
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - attr_list
+  - pymdownx.arithmatex
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+copyright: Copyright &copy; 2022  Joaquin Beltran
+
+nav:
+- Home: index.md
+- Test: test.md

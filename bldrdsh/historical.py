@@ -1,6 +1,7 @@
 import os
 import pathlib
 import datetime
+from typing import List
 
 def generate_historical(params: dict):
 
@@ -9,19 +10,51 @@ def generate_historical(params: dict):
     project_name = params.pop('project_name')
     os.mkdir(path +'/'+ current_time + '_' + project_name )
 
-    metadata = generate_metadata_file(params)
+    metadata = DocsTest.generate_metadata_file(params)
     
     return f"The directory '{project_name}' has been created!"
 
-def generate_metadata_file(params):
+class DocsTest:
     """
-    Given initial params, call functions to generate
-    historical outputs.
-    Big JSON file.
+    Testing docs for mkdocstrings.
+    
+    Now mkdocstrings is watching for changes in bldrdsh.
+
+
     """
-    quantity = params.pop('quantity')
-    to_json = "add date, time, title, quantity to json file"
-    return "return a summary of to_json but beautify it"
+
+
+    def test(funcs: List):
+        """do something.
+        
+        Arguments:
+            funcs: functions that indicate which items to keep
+        """
+        return funcs
+
+    def generate_metadata_file(params):
+        """
+        Given initial params, call functions to generate
+        historical outputs.
+        Big JSON file.
+
+        Usage:
+
+        ```python
+        def some_func(a,b,c):
+            return a + b + c
+
+        ```
+        """
+        quantity = params.pop('quantity')
+        to_json = "add date, time, title, quantity to json file"
+        return "return a summary of to_json but beautify it"
+
+    def agg(self, **kwargs):
+        """
+        Does some agg.
+        """
+        pass
 
 def generate_table():
     """
@@ -31,3 +64,8 @@ def generate_table():
     Then postgresql
     """
     pass
+
+def get_name():
+    project_name = input("Name? ")
+    quantity = input("Quantity? ")
+    print(project_name, quantity)
