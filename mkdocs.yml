@@ -1,5 +1,6 @@
 site_name: BLDRDSH
 repo_url: https://github.com/JoaquinBeltran1/BLDRDSH
+site_url: https://joaquinbeltran1.github.io/BLDRDSH
 site_description: A package that...
 site_author: Joaquin Beltran
 theme:
@@ -27,7 +28,7 @@ theme:
 
 plugins:
   - mkdocstrings
-  
+
 watch:
 - bldrdsh
 extra:
@@ -65,3 +66,5 @@ copyright: Copyright &copy; 2022  Joaquin Beltran
 nav:
 - Home: index.md
 - Test: test.md
+- Use Cases: use_cases.md
+- FAQ: faq.md
