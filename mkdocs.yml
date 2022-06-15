@@ -68,3 +68,5 @@ nav:
 - Test: test.md
 - Use Cases: use_cases.md
 - FAQ: faq.md
+- 'Dcoumentation':
+    - 'Introduction': 'docs/Intro.md'

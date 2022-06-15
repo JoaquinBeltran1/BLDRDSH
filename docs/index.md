@@ -65,7 +65,10 @@ I can do some maths $a + b < c$ inline.
 $$ a + c^2 < b^7 $$
 
 
-
+First Header | Second Header | Third Header
+:----------- |:-------------:| -----------:
+Left         | Center        | Right
+Left         | Center        | Right
 
 
 [^1]: See more in [here](https://www.google.com){:target="_blank"}
