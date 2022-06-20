@@ -1,0 +1,44 @@
+import os
+from datetime import datetime
+
+from bldrdsh.generate.utils import create_folder, validate_date, write_json
+
+
+def create_project_prompt():
+    project_name, path = create_folder()
+    print(project_name, path)
+    
+    # Create txt file with user_{number given} in folder data
+    while True:
+        try:
+            initial_users = int(input('How many initial users? '))
+            break
+        except:
+            print("That's not a valid option!")
+    
+    start_date = input('Enter a starting date of the format dd/mm/YYY (default: 01/01/2010): ')
+    validate_date(start_date)
+
+    now = datetime.now()
+    dt_string = now.strftime("%d_%m_%Y_%H_%M")
+
+    # Project Summary - print some info: project name, date created, num of users. Verify if we are inside a valid folder --> content of metadata file. If we are skip
+        
+        
+    j_data = {
+        "project_name": project_name,
+        "date_created": dt_string,
+        "Starting date": start_date,
+        "Initial users": initial_users
+    }
+
+    # OK Create first metadata file -->{prjoect_name}_metadata.json
+    os.mkdir(path)
+
+    write_json(path, f'{project_name}_metadata.json', j_data)
+
+    """
+    Then verify if existing project
+    """
+
+
