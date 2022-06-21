@@ -24,3 +24,4 @@ def write_json(target_path, target_file, data):
             raise
     with open(os.path.join(target_path, target_file), 'w') as f:
         json.dump(data, f, indent=4)
+

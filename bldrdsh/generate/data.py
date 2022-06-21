@@ -1,15 +1,5 @@
-from bldrdsh.generate.new_project import create_project_prompt
-from bldrdsh.generate.check_project import check_existing_project
-
-
 class GenerateData():
     """
-    Main entry point!!!
-    Called within existing project
-    or
-    Empty folder
-
-    Takes Data Requirements
 
     Calls all other functions
         - generate.check_project
@@ -21,16 +11,12 @@ class GenerateData():
     """
     
     
-    def create_new_project():
-        # Check if exisiting and valid project in current path--> If false, create, if true, return msg
-        existing = check_existing_project()
-        print(existing)
-        if existing:
-            return('Folder already contains project')
-        else:
-            create_project_prompt()
+
 
     def generate():
+        # Print summary of inputs from user. Short description of each initial value, then prompt.
+        # Here, include lists (python inquirer).
+        # At the end, show summary, and then proceed with the generation.
         # Check if exisiting and valid project in current path-->
         # If there is set path to its location. Apply all next function into that path <-- Ça va de soi
 

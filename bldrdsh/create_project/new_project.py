@@ -1,8 +1,17 @@
 import os
 from datetime import datetime
 
-from bldrdsh.generate.utils import create_folder, validate_date, write_json
+from bldrdsh.utils import check_existing_project
+from bldrdsh.create_project.utils import create_folder, validate_date, write_json
 
+def create():
+    # Check if exisiting and valid project in current path--> If false, create, if true, return msg
+    existing = check_existing_project()
+    print(existing)
+    if existing:
+        return('Folder already contains project')
+    else:
+        create_project_prompt()
 
 def create_project_prompt():
     project_name, path = create_folder()
@@ -24,7 +33,6 @@ def create_project_prompt():
 
     # Project Summary - print some info: project name, date created, num of users. Verify if we are inside a valid folder --> content of metadata file. If we are skip
         
-        
     j_data = {
         "project_name": project_name,
         "date_created": dt_string,
@@ -34,11 +42,5 @@ def create_project_prompt():
 
     # OK Create first metadata file -->{prjoect_name}_metadata.json
     os.mkdir(path)
-
     write_json(path, f'{project_name}_metadata.json', j_data)
-
-    """
-    Then verify if existing project
-    """
-
 
