@@ -1,11 +1,9 @@
-def check_project():
-    """
-    Called from generate.data
+import os
 
-    Checks if project exists
-    If not, or wrong format -> error <- generate.errors
-
-    If project new -> generate.new_tables
-    """
-    
-    pass
+def check_existing_project():
+    arr = os.listdir()
+    for i in arr:
+        if i.endswith(".json"):
+            return True
+        else:
+            return False
