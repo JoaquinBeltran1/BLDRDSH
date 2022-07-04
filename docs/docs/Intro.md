@@ -16,4 +16,6 @@ If not in an exisintg project folder, calling generate will create a new folder 
 
 ## Generating data
 
+--> How it works
+
 ![Generate data](../img/generate_data.png)

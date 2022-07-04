@@ -18,15 +18,15 @@ def create_project_prompt():
     print(project_name, path)
     
     # Create txt file with user_{number given} in folder data
-    while True:
-        try:
-            initial_users = int(input('How many initial users? '))
-            break
-        except:
-            print("That's not a valid option!")
+    # while True:
+    #     try:
+    #         initial_users = int(input('How many initial users? '))
+    #         break
+    #     except:
+    #         print("That's not a valid option!")
     
-    start_date = input('Enter a starting date of the format dd/mm/YYY (default: 01/01/2010): ')
-    validate_date(start_date)
+    # start_date = input('Enter a starting date of the format dd/mm/YYY (default: 01/01/2010): ')
+    # validate_date(start_date)
 
     now = datetime.now()
     dt_string = now.strftime("%d_%m_%Y_%H_%M")
@@ -36,8 +36,6 @@ def create_project_prompt():
     j_data = {
         "project_name": project_name,
         "date_created": dt_string,
-        "Starting date": start_date,
-        "Initial users": initial_users
     }
 
     # OK Create first metadata file -->{prjoect_name}_metadata.json

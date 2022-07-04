@@ -1,4 +1,5 @@
 from bldrdsh.utils import check_existing_project, check_validity, check_if_new
+from bldrdsh.batch.initial_setup import initial_setup
 
 class GenerateData():
     """
@@ -29,13 +30,21 @@ class GenerateData():
         existing = check_existing_project()
         print(existing)
         if existing:
-            print('Folder contains project')
             new_project = check_if_new()
             if new_project:
+                """
+                
+                """
+
                 print("New project, no last batch!")
+                meta_file = initial_setup()
+                start_batch()
+                print(meta_file)
+
             else:
                 print("Not new project, last batch exists")
-            return 'done!'
+                start_batch()
+            return 'done! <-- return some summaries'
             valid = check_validity()
             if valid:
                 generate_data()
@@ -44,3 +53,52 @@ class GenerateData():
 
         else:
             return 'There is no project in this folder'
+
+
+def start_batch():
+    pre_batch()
+    start_load()
+    pass
+
+def pre_batch():
+    check_past_tables()
+    check_past_metadata()
+    pass
+
+def check_past_tables():
+   
+    pass
+
+
+def check_past_metadata():
+    """
+    ??? Check validity of data?
+    """
+    pass
+
+def start_load():
+    load_agents()
+    load_tasks()
+    load_contacts()
+    load_companies()
+    load_trends()
+    pass
+
+def load_tasks():
+    pass
+
+def load_contacts():
+    pass
+
+def load_companies():
+    pass
+
+def load_trends():
+    pass
+
+def load_agents():
+    """
+    Store agents. Not really needed (?). Prolly yes.
+    Return agents summary
+    """
+    pass
