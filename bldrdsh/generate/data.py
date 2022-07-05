@@ -28,15 +28,13 @@ class GenerateData():
 
         # -------------------------
         existing = check_existing_project()
-        print(existing)
+        print('Project exists:', existing)
         if existing:
             new_project = check_if_new()
             if new_project:
                 """
                 
                 """
-
-                print("New project, no last batch!")
                 meta_file = initial_setup()
                 start_batch()
                 print(meta_file)

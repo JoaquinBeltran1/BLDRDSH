@@ -4,11 +4,17 @@ import json
 def check_existing_project():
     arr = os.listdir()
     print('Tis the metadata file: ', arr)
+    print(len(arr))
     for i in arr:
         if i.endswith(".json"):
-            return True
+            file = i
         else:
-            return False
+            file = False
+    if file:
+        print(file, 'tis good')
+        return True
+    else:
+        return False
 
 def check_validity():
     """
@@ -38,7 +44,7 @@ def check_if_new():
                 return True
 
         else:
-            print("No metadata.json file!")
+            print("Tis a new project!")
     
     
     # returns JSON object as 

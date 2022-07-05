@@ -1,4 +1,5 @@
-from bldrdsh.batch.utils import validate_date, open_metadata
+from datetime import datetime
+from bldrdsh.batch.utils import start_valid_date, open_metadata, write_date_metadata
 
 
 def initial_setup():
@@ -12,11 +13,15 @@ def initial_setup():
             random distr algo create trends - prompt !!! Define some macro and micro trends. Market, product-market fit. Tech adoption stage.
             Create company and market summary file -> in future Generate scenario. Do you like it? Y/n. if no generate a new one.
     """
-    start_date = input('Enter a starting date of the format dd/mm/YYY (default: 01/01/2010): ')
-    validate_date(start_date)
-    data = open_metadata()
-    data['starting_date'] = start_date
 
-    # set initial trends to trends file
+    # Start date ting
+    start_date = start_valid_date()
+
+    data = open_metadata() # metadata.json
+    data['starting_date'] = start_date
+    # write to metadata.json
+    # write_date_metadata(data)
 
     return data
+
+    # set initial trends to trends file
