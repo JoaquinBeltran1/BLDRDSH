@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 def start_valid_date():
-    start_date = input('Enter a starting date of the format dd/mm/YYY (default: 01/01/2010): ') or '01/01/2010' 
+    start_date = input('Enter a starting date of the format dd/mm/YYYY (default: 01/01/2010): ') or '01/01/2010' 
     valid = False
     
     while not valid:

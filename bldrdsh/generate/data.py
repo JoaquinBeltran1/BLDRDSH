@@ -28,14 +28,14 @@ class GenerateData():
 
         # -------------------------
         existing = check_existing_project()
-        print('Project exists:', existing)
         if existing:
+            print('There is a project in this folder!')
             new_project = check_if_new()
             if new_project:
-                """
-                
-                """
+
                 meta_file = initial_setup()
+
+
                 start_batch()
                 print(meta_file)
 
@@ -60,6 +60,9 @@ def start_batch():
 
 def pre_batch():
     check_past_tables()
+    """
+    if no past tables, pass
+    """
     check_past_metadata()
     pass
 
@@ -75,6 +78,7 @@ def check_past_metadata():
     pass
 
 def start_load():
+
     load_agents()
     load_tasks()
     load_contacts()

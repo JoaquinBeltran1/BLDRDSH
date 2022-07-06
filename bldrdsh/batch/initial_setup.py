@@ -17,11 +17,24 @@ def initial_setup():
     # Start date ting
     start_date = start_valid_date()
 
-    data = open_metadata() # metadata.json
-    data['starting_date'] = start_date
+    metadata = open_metadata() # metadata.json
+    metadata['starting_date'] = start_date
     # write to metadata.json
     # write_date_metadata(data)
 
-    return data
+    # prompt company + market type, only 1 availble for now
+    """
+    pass company + market type number to generate funcs. Given X, generate accordingly.
+    """
+    print('up to aaaa')
+    generate_agents()
+    generate_trends()
+    return metadata
 
     # set initial trends to trends file
+
+def generate_agents():
+    print('generate agenaaaaaats')
+
+def generate_trends():
+    print('generate trends')

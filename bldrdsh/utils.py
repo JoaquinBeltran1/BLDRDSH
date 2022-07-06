@@ -3,8 +3,6 @@ import json
 
 def check_existing_project():
     arr = os.listdir()
-    print('Tis the metadata file: ', arr)
-    print(len(arr))
     for i in arr:
         if i.endswith(".json"):
             file = i
@@ -37,14 +35,11 @@ def check_if_new():
         if keyword in filename:
             f = open(f'{filename}')
             data = json.load(f)
-            print(data)
             if 'last_batch' in data.keys():
                 return False
             else:
+                print('Tis a new project!')
                 return True
-
-        else:
-            print("Tis a new project!")
     
     
     # returns JSON object as 
