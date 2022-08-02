@@ -1,0 +1,30 @@
+[
+     {
+        "name": "profile_1",
+        "id": 1,
+        "agents": 2,
+        "type": "default",
+        "growth_multiplier": 1,
+        "risk": 1,
+        "starting_point" : "early_adopters"
+    },
+
+     {
+        "name": "profile_2",
+        "id": 2,
+        "agents": 2,
+        "type": "startup",
+        "growth_multiplier": 2,
+        "risk": 2,
+        "starting_point" : "innovators"
+    },
+    {
+        "name": "profile_3",
+        "id": 3,
+        "agents": 2,
+        "type": "incumbent",
+        "growth_multiplier": 0.5,
+        "risk": 0.5,
+        "starting_point" : "late_majority"
+    }
+]

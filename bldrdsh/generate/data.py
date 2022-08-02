@@ -3,18 +3,7 @@ from bldrdsh.batch.initial_setup import initial_setup
 
 class GenerateData():
     """
-
-    Calls all other functions
-        - generate.check_project -- OK
-        - generate.errors
-
-        - batch.initial_setup
-    Should be a class?
     """
-    
-    
-
-
     def generate():
         # Print summary of inputs from user. Short description of each initial vaºlue, then prompt.
         # Here, include lists (python inquirer).
@@ -33,11 +22,11 @@ class GenerateData():
             new_project = check_if_new()
             if new_project:
 
-                meta_file = initial_setup()
+                initial_setup()
 
-
+                print('Successful initial setup!')
                 start_batch()
-                print(meta_file)
+                
 
             else:
                 print("Not new project, last batch exists")
@@ -54,6 +43,9 @@ class GenerateData():
 
 
 def start_batch():
+    """
+    Requires some files: agents, trends.
+    """
     pre_batch()
     start_load()
     pass
@@ -67,7 +59,11 @@ def pre_batch():
     pass
 
 def check_past_tables():
-   
+    """
+    Check all tables.
+    Here we check if we've done a correct inital setup = 
+    we have a project starting date
+    """
     pass
 
 

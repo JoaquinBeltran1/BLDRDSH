@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 
 from bldrdsh.utils import check_existing_project
-from bldrdsh.create_project.utils import create_folder, validate_date, write_json
+from bldrdsh.create_project.utils import create_folder, write_json
 
 def create():
     # Check if exisiting and valid project in current path--> If false, create, if true, return msg
@@ -24,9 +24,6 @@ def create_project_prompt():
     #         break
     #     except:
     #         print("That's not a valid option!")
-    
-    # start_date = input('Enter a starting date of the format dd/mm/YYY (default: 01/01/2010): ')
-    # validate_date(start_date)
 
     now = datetime.now()
     dt_string = now.strftime("%d_%m_%Y_%H_%M")

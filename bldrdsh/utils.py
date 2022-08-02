@@ -3,11 +3,12 @@ import json
 
 def check_existing_project():
     arr = os.listdir()
+    file = None
     for i in arr:
         if i.endswith(".json"):
             file = i
         else:
-            file = False
+            pass
     if file:
         print(file, 'tis good')
         return True
