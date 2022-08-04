@@ -1,11 +1,6 @@
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 from bldrdsh.db_testing.working_with_data import engine, User, Address
-
-def test():
-    squidward = User(name="squidward", fullname="Squidward Tentacles")
-    print(squidward)
-
-krabs = User(name='ehkrabs', fullname='Eugene H. Krabs')
 
 session = Session(engine)
 
@@ -19,3 +14,8 @@ def flush():
     session.flush()
     # Doesn't commit automatically
     session.commit()
+
+def select_user(name:str):
+    user = session.execute(select(User).filter_by(name=name)).scalar_one()
+    print(user)
+    return user
