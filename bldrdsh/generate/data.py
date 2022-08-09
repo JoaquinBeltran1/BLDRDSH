@@ -25,12 +25,12 @@ class GenerateData():
                 initial_setup()
 
                 print('Successful initial setup!')
-                start_batch()
+                generate_batch()
                 
 
             else:
                 print("Not new project, last batch exists")
-                start_batch()
+                generate_batch()
             return 'done! <-- return some summaries'
             valid = check_validity()
             if valid:
@@ -42,12 +42,25 @@ class GenerateData():
             return 'There is no project in this folder'
 
 
-def start_batch():
+def generate_batch(objective:dict):
     """
-    Requires some files: agents, trends.
+    Main batch entry point.
+
+    Check if first batch.
+    If yes, prepare first batch
+
+
+    Given batch objective (days running or new customers),
+    generate new day of data. <- This reads db!!!
+    At end of each day, check with objectives.
+    Update distance (?).
+    Then new day or if distance 0 stop batch.
+
     """
+
     pre_batch()
     start_load()
+    day_loop()
     pass
 
 def pre_batch():
@@ -73,8 +86,7 @@ def check_past_metadata():
     """
     pass
 
-def start_load():
-
+def start_load(a):
     load_agents()
     load_tasks()
     load_contacts()
@@ -100,3 +112,8 @@ def load_agents():
     Return agents summary
     """
     pass
+
+def day_loop():
+    """
+    Entry function for each day
+    """

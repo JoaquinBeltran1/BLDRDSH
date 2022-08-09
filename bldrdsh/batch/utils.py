@@ -11,7 +11,7 @@ def start_valid_date():
     while not valid:
         try:
             date = datetime.strptime(
-                start_date, "%m/%d/%Y").strftime("%m/%d/%Y")
+                start_date, "%d/%m/%Y").strftime("%d/%m/%Y")
             valid = True
         except ValueError:
             start_date = input("Incorrect date format. Please try again (default: 01/01/2010): ") or '01/01/2010'
@@ -38,3 +38,9 @@ def write_metadata(metadata):
         if keyword in filename:
             with open(f'{filename}', 'w') as f:
                 json.dump(metadata, f, indent=4)
+
+def push_to_db():
+    """
+    Whatever is passed in this function,
+    push it to a table in sqlite
+    """
