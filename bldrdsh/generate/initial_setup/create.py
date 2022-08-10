@@ -1,8 +1,5 @@
-import json
-import inquirer
-from pathlib import Path
-
-from bldrdsh.batch.utils import push_to_db, start_valid_date, open_metadata, write_metadata
+from bldrdsh.generate.initial_setup.utils import start_valid_date, open_metadata, write_metadata, read_profile
+from bldrdsh.generate.initial_setup.prompt import select_company_profile_prompt
 from bldrdsh.classes.Agent import Agent
 
 def initial_setup():
@@ -40,45 +37,16 @@ def generate_company():
     # Selected profile
     profile = read_profile(value)
     
-    # Generate initial setup functions
-    trends = generate_trends(profile)
-    agents = generate_agents(profile)
+    # Create initial setup functions
+    trends = create_trends(profile)
+    agents = create_agents(profile)
 
     # TODO: Store trends & agents in SQLite tables
     # TODO: if all is good return success message
 
     return agents, trends
-    
 
-def select_company_profile_prompt():
-    """
-    Prompt with list to select company profile
-    1, 2, or 3.
-    """
-    questions = [
-    inquirer.List('company_profile',
-                    message="What company profile do you want to choose?",
-                    choices=[('Default', 1), ('Early startup',2), ('Incumbent', 3)],
-                ),
-    ]
-    select_company_profile = inquirer.prompt(questions) # TODO: V2 Complex prompt with rich, explanatory text (?). Python inquirer list or Typer + Rich
-
-    return select_company_profile
-
-
-def read_profile(profile_num: int):
-    """
-    Read profile values from JSON given profile num. In JSON file store 3 profiles.
-    return dict with selected profile values.
-    """
-    cwd = Path(__file__).parent.parent
-    with open(cwd / 'params/company_profiles.json') as f:
-        profiles = json.load(f)
-
-    profile = next((profile for profile in profiles if profile["id"] == profile_num), None)
-    return profile
-
-def generate_trends(profile):
+def create_trends(profile):
     # TODO: take profile selected
     """
     Read dict with values. Values can only be correct.
@@ -96,7 +64,7 @@ def generate_trends(profile):
     # TODO: store trends in SQL table
     return trends
 
-def generate_agents(profile):
+def create_agents(profile):
     """
     Small variability functions to add randomness to values <-- This in future AI based
     """
@@ -107,7 +75,7 @@ def generate_agents(profile):
         list_of_agents.append(new_agent)
     return list_of_agents
 
-def generate_inital_buffer():
+def create_inital_buffer():
     """
     Generate some contacts and companies.
     Assign inital random task to each
@@ -119,12 +87,10 @@ def generate_inital_buffer():
     number_of_companies = 50
     # This will be the number of initial companies
     # TODO: Add number code to each uuid -> companies = 01, contacts, 02. Use constant seed. for maximum entropy <- what does it mean?
-    # Given that number of COs, generate COs and contacts.
-    # Use Company and Contact classes
-    # Standard creation: 1 company = 1 or more contacts
-    # They should be dicts to be stored in DB (using sqlalchemy models)
-    # store in db class. Pass in each dataframe. These classes are VERY IMPORTANT!
 
+    # Given that number of COs, generate COs and contacts.
+
+    # Use Company and Contact classes
     pass
 
 def assign_inital_batch():
@@ -134,11 +100,6 @@ def assign_inital_batch():
     """
     pass
 
-def initial_db_setup():
-    """
-    Create inital db and tables
-    Enter initial data to each table
-    """
 
 def generate_companies():
     # for i in range(len(number_of_companies))

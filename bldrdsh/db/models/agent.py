@@ -1,0 +1,4 @@
+def agent():
+    """
+    SQLAlchemy model
+    """
