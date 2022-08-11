@@ -10,7 +10,6 @@ def check_existing_project():
         else:
             pass
     if file:
-        print(file, 'tis good')
         return True
     else:
         return False

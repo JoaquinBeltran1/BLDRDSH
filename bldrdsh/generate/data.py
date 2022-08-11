@@ -1,14 +1,12 @@
+from bldrdsh.generate.initial_setup.create import initial_setup
 from bldrdsh.utils import check_existing_project, check_validity, check_if_new
-from bldrdsh.batch.initial_setup import initial_setup
 
 class GenerateData():
     """
     """
     def generate():
-        # Print summary of inputs from user. Short description of each initial vaºlue, then prompt.
-        # Here, include lists (python inquirer).
+        # Print summary of inputs from user. Short description of each initial value, then prompt.
         # At the end, show summary, and then proceed with the generation.
-        # Check if exisiting and valid project in current path-->
         # If there is set path to its location. Apply all next function into that path <-- Ça va de soi
 
         # --------------------------
@@ -42,9 +40,9 @@ class GenerateData():
             return 'There is no project in this folder'
 
 
-def generate_batch(objective:dict):
+def generate_batch():
     """
-    Main batch entry point.
+    Main batch entry point. Here goes the prompt
 
     Check if first batch.
     If yes, prepare first batch
@@ -86,7 +84,7 @@ def check_past_metadata():
     """
     pass
 
-def start_load(a):
+def start_load():
     load_agents()
     load_tasks()
     load_contacts()

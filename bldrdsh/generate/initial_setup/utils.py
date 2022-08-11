@@ -52,7 +52,7 @@ def read_profile(profile_num: int):
     Read profile values from JSON given profile num. In JSON file store 3 profiles.
     return dict with selected profile values.
     """
-    cwd = Path(__file__).parent.parent
+    cwd = Path(__file__).parent.parent.parent
     with open(cwd / 'params/company_profiles.json') as f:
         profiles = json.load(f)
 

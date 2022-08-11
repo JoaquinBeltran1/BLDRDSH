@@ -1,3 +1,4 @@
+from ...db.init_db import init_db
 from bldrdsh.generate.initial_setup.utils import start_valid_date, open_metadata, write_metadata, read_profile
 from bldrdsh.generate.initial_setup.prompt import select_company_profile_prompt
 from bldrdsh.classes.Agent import Agent
@@ -20,6 +21,7 @@ def initial_setup():
     agents_trends = generate_company()
     print('This is the metadata content:',metadata)
     print('Printing from inital setup:', agents_trends)
+    create_inital_buffer()
     return None
     
     # return "Initial setup done! Ready to start the batch."
@@ -83,15 +85,13 @@ def create_inital_buffer():
     Return them in one DataFrame
     """
 
-    # Pick random number between 1-50. Normal disitrbution
+    # Pick random number between 1-50. Normal distribution
     number_of_companies = 50
     # This will be the number of initial companies
     # TODO: Add number code to each uuid -> companies = 01, contacts, 02. Use constant seed. for maximum entropy <- what does it mean?
-
+    init_db()
     # Given that number of COs, generate COs and contacts.
-
-    # Use Company and Contact classes
-    pass
+    return 'db created! + summary'
 
 def assign_inital_batch():
     """
