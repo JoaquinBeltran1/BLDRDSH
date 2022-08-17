@@ -1,4 +1,5 @@
-class Agent:
+from bldrdsh.classes.Base import Base
+class Agent(Base):
     def __init__(self, profile_type):
         self.profile_type = profile_type
 

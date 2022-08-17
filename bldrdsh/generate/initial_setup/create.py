@@ -1,7 +1,12 @@
-from ...db.init_db import init_db
+from typing import Optional
+from sqlalchemy.orm import Session
+
+from bldrdsh.db.init_db import init_db
 from bldrdsh.generate.initial_setup.utils import start_valid_date, open_metadata, write_metadata, read_profile
 from bldrdsh.generate.initial_setup.prompt import select_company_profile_prompt
-from bldrdsh.classes.Agent import Agent
+from bldrdsh.classes.Agent import Agent # <- this ???
+
+from bldrdsh.db.models.models import Company
 
 def initial_setup():
     """
@@ -89,7 +94,13 @@ def create_inital_buffer():
     number_of_companies = 50
     # This will be the number of initial companies
     # TODO: Add number code to each uuid -> companies = 01, contacts, 02. Use constant seed. for maximum entropy <- what does it mean?
-    init_db()
+    engine = init_db()
+    companies = CreateCompany.create_many(number_of_companies)
+    session = Session(engine)
+    for i in companies:
+       session.add(i)
+    session.commit()
+
     # Given that number of COs, generate COs and contacts.
     return 'db created! + summary'
 
@@ -108,3 +119,25 @@ def generate_companies():
     # Add as hidden value original_batch, uuid, 
     #   push_to_db()
     pass
+
+
+class CreateCompany():
+    def _create(i: Optional[int] = None):
+        company = {}
+        company['name'] = f'company_{i}'
+        company['revenue'] = 1000 + i
+        new_co = Company(**company)
+        return new_co
+    
+    def create_one()->list:
+        new_one = CreateCompany._create(1)
+        print('Company created!')
+        return list(new_one)
+    
+    def create_many(how_many:int)->list:
+        list_of = []
+        for i in range(how_many):
+            one = CreateCompany._create(i)
+            list_of.append(one)
+        print('Companies created!')
+        return list_of

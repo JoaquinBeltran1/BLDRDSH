@@ -1,7 +1,6 @@
 from sqlalchemy import Column, Integer, Float, String, ForeignKey
 from sqlalchemy.orm import declarative_base, relationship
 
-########################################################
 Base = declarative_base()
 
 class Agent(Base):
@@ -28,6 +27,9 @@ class Company(Base):
     owner_id = Column(Integer)
     phone =  Column(String, nullable=True)
     company_type = Column(String, nullable=True)
+
+    def __repr__(self):
+        return f"Company(id={self.id!r}, name={self.name!r}, revenue={self.revenue!r}, employees={self.employees!r}, owner_id={self.owner_id!r}, phone={self.phone!r}, company_type={self.company_type!r})"
 
 
 class CompanyHidden(Base):
