@@ -1,3 +1,4 @@
+import os
 from typing import Optional
 from sqlalchemy.orm import Session
 
@@ -90,12 +91,13 @@ def create_inital_buffer():
     Return them in one DataFrame
     """
 
-    # Pick random number between 1-50. Normal distribution
+    # TODO: Pick random number between 1-50. Normal distribution
     number_of_companies = 50
     # This will be the number of initial companies
     # TODO: Add number code to each uuid -> companies = 01, contacts, 02. Use constant seed. for maximum entropy <- what does it mean?
     engine = init_db()
     companies = CreateCompany.create_many(number_of_companies)
+    contacts = CreateContact()
     session = Session(engine)
     for i in companies:
        session.add(i)
@@ -141,3 +143,16 @@ class CreateCompany():
             list_of.append(one)
         print('Companies created!')
         return list_of
+
+class CreateContact():
+    pass
+
+def delete_db():
+    myfile="some.db"
+
+    ## If file exists, delete it ##
+    if os.path.isfile(myfile):
+        os.remove(myfile)
+        print('DB deleted.')
+    else:    ## Show an error ##
+        print("Error: %s file not found" % myfile)
