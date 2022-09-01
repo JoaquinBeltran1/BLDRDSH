@@ -1,5 +1,8 @@
 import os
-from typing import Optional
+from datetime import datetime
+import random
+from typing import List, Optional
+import uuid
 from sqlalchemy.orm import Session
 
 from bldrdsh.db.init_db import init_db
@@ -7,7 +10,7 @@ from bldrdsh.generate.initial_setup.utils import start_valid_date, open_metadata
 from bldrdsh.generate.initial_setup.prompt import select_company_profile_prompt
 from bldrdsh.classes.Agent import Agent # <- this ???
 
-from bldrdsh.db.models.models import Company
+from bldrdsh.db.models.models import CompanyModel, ContactModel
 
 def initial_setup():
     """
@@ -90,25 +93,29 @@ def create_inital_buffer():
     Assign inital random due date to each
     Return them in one DataFrame
     """
-
+    start_time = datetime.now()
+    
     # TODO: Pick random number between 1-50. Normal distribution
     number_of_companies = 50
     # This will be the number of initial companies
     # TODO: Add number code to each uuid -> companies = 01, contacts, 02. Use constant seed. for maximum entropy <- what does it mean?
     engine = init_db()
-    companies = CreateCompany.create_many(number_of_companies)
-    contacts = CreateContact()
+    companies = Company.create_many(number_of_companies)
+    contacts = Contact.create_from_many_companies(companies)
     session = Session(engine)
     for i in companies:
        session.add(i)
+    for i in contacts:
+        session.add(i)
     session.commit()
-
+    end_time = datetime.now()
+    print('Duration: {}'.format(end_time - start_time))
     # Given that number of COs, generate COs and contacts.
     return 'db created! + summary'
 
 def assign_inital_batch():
     """
-    Assign contacts and companies from JSON
+    Assign contacts and companies from SQLite
     to each agent.
     """
     pass
@@ -123,29 +130,63 @@ def generate_companies():
     pass
 
 
-class CreateCompany():
+class Company():
     def _create(i: Optional[int] = None):
         company = {}
         company['name'] = f'company_{i}'
         company['revenue'] = 1000 + i
-        new_co = Company(**company)
+        company['uuid'] = str(uuid.uuid4())
+        new_co = CompanyModel(**company)
         return new_co
     
     def create_one()->list:
-        new_one = CreateCompany._create(1)
+        new_one = Company._create(1)
         print('Company created!')
         return list(new_one)
     
     def create_many(how_many:int)->list:
         list_of = []
         for i in range(how_many):
-            one = CreateCompany._create(i)
+            one = Company._create(i)
             list_of.append(one)
         print('Companies created!')
         return list_of
+    
+    def create_from_contact():
+        pass
 
-class CreateContact():
-    pass
+class Contact():
+    def _create(j, i):
+        contact = {}
+        contact['name'] = f'contact_{j}'
+        contact['uuid'] = str(uuid.uuid4())
+        contact['company_uuid'] = i.uuid
+        
+        new_contact = ContactModel(**contact)
+        return new_contact
+    def create_from_many_companies(companies: List): # List of companies
+        list_of_contacts = []
+        for i in companies:
+            number_of_contacts = random.choice([1,2])
+            for j in range(number_of_contacts):
+                new_contact = Contact._create(j, i)
+                list_of_contacts.append(new_contact)
+        print('Contacts created!')
+        return list_of_contacts
+
+        pass
+    def create_from_one_company(company): # Company type
+        pass
+
+    def create(): # create contact. Inside add Company.create_from_contact()
+        pass
+
+    def add_one(company): # add 1 contact to existing company
+        pass
+
+    def add_more_than_one(company):
+        pass
+
 
 def delete_db():
     myfile="some.db"

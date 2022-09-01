@@ -6,4 +6,3 @@ def create_data():
     """
 
     GenerateData.generate()
-    
